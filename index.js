@@ -61,7 +61,7 @@ app.post("/register", (req, res) => {
 app.get("/welcome", (req, res) => {
   const { name } = req.query;
 
-  // Find the user by email
+  // Find the user by name
   User.findOne({ name })
     .then((user) => {
       if (!user) {
