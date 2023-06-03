@@ -1,0 +1,87 @@
+<!-- welcome.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .welcome-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+      }
+
+      .welcome-container h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: #333333;
+      }
+
+      .welcome-container p {
+        font-size: 16px;
+        color: #777777;
+        margin-bottom: 10px;
+      }
+
+      .welcome-container ul {
+        margin-bottom: 20px;
+      }
+
+      .welcome-container li {
+        font-size: 14px;
+        color: #555555;
+      }
+
+      .back-button {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .back-button a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-button a:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome-container">
+      <h2>Welcome <%= user.email %></h2>
+      <p>Grades:</p>
+      <ul>
+        <li>Grade 1: <%= user.grade1 %></li>
+        <li>Grade 2: <%= user.grade2 %></li>
+        <li>Grade 3: <%= user.grade3 %></li>
+      </ul>
+      <p>
+        Average Grade: <%= (parseInt(user.grade1) + parseInt(user.grade2) +
+        parseInt(user.grade3)) / 3 %>
+      </p>
+      <div class="back-button">
+        <a href="/">Go Back</a>
+      </div>
+    </div>
+  </body>
+</html>
