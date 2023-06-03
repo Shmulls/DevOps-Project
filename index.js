@@ -36,12 +36,11 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { email, password, grade1, grade2, grade3 } = req.body;
+  const { name, grade1, grade2, grade3 } = req.body;
 
   // Create a new user
   const newUser = new User({
-    email,
-    password,
+    name,
     grade1,
     grade2,
     grade3,
@@ -51,7 +50,7 @@ app.post("/register", (req, res) => {
   newUser
     .save()
     .then(() => {
-      res.redirect(`/welcome?email=${email}`);
+      res.redirect(`/welcome?name=${name}`);
     })
     .catch((error) => {
       console.log("Error saving user:", error);
@@ -60,33 +59,15 @@ app.post("/register", (req, res) => {
 });
 
 app.get("/welcome", (req, res) => {
-  const { email } = req.query;
+  const { name } = req.query;
 
   // Find the user by email
-  User.findOne({ email })
+  User.findOne({ name })
     .then((user) => {
       if (!user) {
         res.redirect("/");
       } else {
         res.render("welcome", { user, error: null });
-      }
-    })
-    .catch((error) => {
-      console.log("Error finding user:", error);
-      res.redirect("/");
-    });
-});
-
-app.post("/login", (req, res) => {
-  const { email, password } = req.body;
-
-  // Find the user by email
-  User.findOne({ email })
-    .then((user) => {
-      if (!user || user.password !== password) {
-        res.render("login", { error: "Wrong email or password" });
-      } else {
-        res.redirect(`/welcome?email=${email}`);
       }
     })
     .catch((error) => {
